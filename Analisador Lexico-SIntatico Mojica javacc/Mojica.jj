@@ -52,14 +52,20 @@ TOKEN :
 
 void Prog () :
 {}
-{ <VOID> <MAIN> <LBRACE> <RBRACE>
+{ 
+  main() lfunc() <EOF>
+}
+	
+void main () :
+{}
+{
+  <VOID> <MAIN> <LBRACE> <RBRACE>
   <LCURLY>
   vardecl()
   seqcomandos()
   <RCURLY> 
- <EOF> 
 }
-	
+
 void vardecl () :
 {}
 {
@@ -85,7 +91,7 @@ void comando () :
   |<TID> comando2() 
   |<IF> <LBRACE> boolexp() <RBRACE> <LCURLY> seqcomandos() <RCURLY>
   |<WHILE> <LBRACE> boolexp() <RBRACE> <DO> <LCURLY> seqcomandos() <RCURLY>
-  | <RETURN> tiporeturn()
+  | <RETURN> tiporeturn() <PTV>
 }
 
 void comando2 () :
@@ -151,7 +157,7 @@ void listaexp () :
 void listaexp1 () :
 {}
 {
-  <VG> exps()
+  (<VG> exps() listaexp1())?
 }
 
 void lfunc () :
@@ -163,7 +169,7 @@ void lfunc () :
 void func () :
 {}
 {
-  tipo() <TID> <LBRACE> listaarg() <RBRACE> <RCURLY> vardecl() seqcomandos() <LCURLY>
+  tipo() <TID> <LBRACE> listaarg() <RBRACE> <LCURLY> vardecl() seqcomandos() <RCURLY>
 }
 
 void listaarg () :
@@ -175,5 +181,5 @@ void listaarg () :
 void listaarg2 () :
 {}
 {
-  <VG> tipo() <TID>
+  (<VG> tipo() <TID> listaarg2())?
 }
