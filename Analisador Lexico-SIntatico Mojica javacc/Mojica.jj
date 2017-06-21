@@ -43,11 +43,11 @@ TOKEN :
 | <AND: "and">
 | <OR: "or">
 | <LEQ: "leq">
-| <TID :  ["a"-"z","A"-"Z"] ( ["a"-"z","A"-"Z","0"-"9"])* (("_")*(["a"-"z","A"-"Z","0"-"9"])+)* >
+| <TID : ["a"-"z","A"-"Z"] (["a"-"z","A"-"Z","0"-"9"])*>
 | <NUMLIT: (["0"-"9"])+ ("."((["0"-"9"])+))? ("E" ("+" | "-")? ((["0"-"9"])+))?>
 | <OPA: ("+"|"-")>
 | <OPM: ("*"|"/")>
-| <SKP: (" " | "\t" | "\n" | "\r")>
+| <SKP: "skip();">
 }
 
 void Prog () :
@@ -75,15 +75,15 @@ void tipo () :
 void seqcomandos () :
 {}
 {
-  comando() seqcomandos()
+  comando() (seqcomandos())?
 }
 
 void comando () :
 {}
 {
-  <SKP> <LBRACE> <RBRACE> <PTV> 
+  <SKP> 
   |<TID> comando2() 
-  |<IF> <LBRACE> boolexp() <LCURLY> seqcomandos() <RCURLY>
+  |<IF> <LBRACE> boolexp() <RBRACE> <LCURLY> seqcomandos() <RCURLY>
   |<WHILE> <LBRACE> boolexp() <RBRACE> <DO> <LCURLY> seqcomandos() <RCURLY>
   | <RETURN> tiporeturn()
 }

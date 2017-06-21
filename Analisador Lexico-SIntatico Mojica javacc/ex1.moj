@@ -2,9 +2,7 @@ void main(){
 	int ubs;
 	int upa;
 	bool ps;
-	FuncFazNada();
 	ubs := ubs - upa;
-	
 	if(and(true)(true)){
 		ubs := 171;
 	}
@@ -20,5 +18,5 @@ void main(){
 }
 
 bool nada(int in){
-	  in := 333;
+	in := 333;
 }

@@ -25,7 +25,7 @@ BOOLEXP -> "true" | "false" | "not" "(" BOOLEXP ")" | "and" "(" BOOLEXP ")" "(" 
 	   | "or" "(" BOOLEXP ")" "(" BOOLEXP ")" | "leq" "(" EXPS ")" "(" EXPS ")"
 
 TIPORETURN -> EXPS 
-	      | EXPBOOL	
+	      | BOOLEXP	
 
 EXPS -> TERMO | EXPS OPA TERMO
 
