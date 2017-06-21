@@ -1,8 +1,0 @@
-PARSER_BEGIN(Mojica)
-import java.io.*;
-public class Mojica {
-
-	public static void main(String args[]) throws ParseException,IOException {
-
-	Mojica mojica = new Mojica(new FileInputStream(args[0]));
-	mojica.Prog();
